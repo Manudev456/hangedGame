@@ -28,7 +28,8 @@ def main():
     caracter = ""
     palabra = "polar"
     plabra_oculta = hidenList(palabra)
-    while live > 0:
+    caracteres_adivinados = len(palabra)
+    while live > 0 and caracteres_adivinados > 0:
         a = input("intruduzca una letra: ")
         caracter += a
         print(plabra_oculta)
@@ -36,9 +37,13 @@ def main():
         print(jugada)
         if caracter in palabra:
             score += 1
+            caracteres_adivinados -= 1
         else: 
             live -= 1
-
+    if caracteres_adivinados == 0:
+        print(f'felicidades ganaste, tu puntaje es: {score}')
+    elif live == 0:
+        print(f'Perdiste, tu puntaje es: {score}')
 
 if __name__ == "__main__":
     main()
